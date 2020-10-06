@@ -28,23 +28,34 @@ module "dns_zone" {
   ]
 }
 ```
+## Requirements
+
+| Name | Version |
+|------|---------|
+| terraform | >= 0.13 |
+| flexibleengine | ~> 1.16 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| flexibleengine | ~> 1.16 |
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| description | A domain description | string | n/a | yes |
-| dns\_recordsets |  | list | `<list>` | no |
-| domain\_admin\_email | The domain administrator e-mail | string | n/a | yes |
-| domain\_name | The domain name to be created | string | n/a | yes |
-| domain\_ttl | The domain TTL | string | `"3000"` | no |
-| region\_name | The Flexible Engine region name for a private domain zone | string | `""` | no |
-| vpc\_id | The Flexible Engine VPC ID for a private domain zone | string | `""` | no |
-| zone\_type | The domain type "private" or "public" | string | `"private"` | no |
+|------|-------------|------|---------|:--------:|
+| dns\_recordsets | n/a | <pre>list(object({<br>    name        = string<br>    description = string<br>    ttl         = number<br>    type        = string<br>    records     = list(string)<br>  }))</pre> | `[]` | no |
+| domain\_admin\_email | The domain administrator e-mail | `any` | n/a | yes |
+| domain\_description | A domain description | `any` | n/a | yes |
+| domain\_name | The domain name to be created | `any` | n/a | yes |
+| domain\_ttl | The domain TTL | `number` | `3000` | no |
+| region\_name | The Flexible Engine region name for a private domain zone | `string` | `""` | no |
+| vpc\_id | The Flexible Engine VPC ID for a private domain zone | `string` | `""` | no |
+| zone\_type | Type of the zone, can be "private" or "public" | `any` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| private\_zone\_id | The ID of the private zone |
-| public\_zone\_id | The ID of the public zone |
-
+| zone\_id | The zone ID |
