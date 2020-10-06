@@ -3,7 +3,8 @@
 
 ```hcl
 module "dns_zone" {
-  source = "modules/terraform-fe-dns"
+  source  = "FlexibleEngineCloud/dns/flexibleengine"
+  version = "1.0.0"
 
   domain_name        = "mydomain.org"
   description        = "A domain for mydomain"
